@@ -2,8 +2,8 @@
 PRACTICE Test 1, problem 2.
 
 Authors: David Mutchler, Valerie Galluzzi, Mark Hays, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues and Bryce Pruemer.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 
@@ -101,8 +101,27 @@ def problem2a(circle, rectangle, window):
       :type rectangle: rg.Rectangle
       :type window:    rg.RoseWindow
     """
+    circle.attach_to(window)
+    rectangle.attach_to(window)
+    window.render()
+    window.continue_on_mouse_click()
+
+    cornerpoint1 = rg.Point(rectangle.corner_2.x, rectangle.corner_1.y) #Takes x position of first corner in top left and adds the x length
+    cornerpoint2 = rg.Point(rectangle.corner_1.x, rectangle.corner_2.y)
+    line = rg.Line(cornerpoint1,cornerpoint2)
+    ######ASK HOW TO PUT ARROW#######
+    line.attach_to(window)
+    window.render()
+    window.continue_on_mouse_click()
+
+    circle.fill_color = rectangle.outline_color
+
+    circle.attach_to(window)
+    window.render()
+
+
     # ------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # DONE: 2. Implement and test this function.
     #          Tests have been written for you (above).
     # ------------------------------------------------------------------
     # ------------------------------------------------------------------
@@ -172,8 +191,43 @@ def problem2b(rect, n, delta, win):
       :type delta:  int
       :type win:    rg.RoseWindow
     """
+
+    for k in range(n):
+        if rect.corner_2.x - rect.corner_1.x > 0:
+            newcorner1 = rg.Point(abs(rect.corner_1.x - k*delta), abs(rect.corner_1.y - k*delta))
+            newcorner2 = rg.Point(abs(rect.corner_2.x + k*delta),abs(rect.corner_2.y + k*delta))
+            print(newcorner1.x)
+
+            newrect = rg.Rectangle(newcorner1, newcorner2)
+            if k == 0:
+                newrect.fill_color = rect.fill_color
+            newrect.attach_to(win)
+            win.render()
+        elif rect.corner_2.x - rect.corner_1.x < 0 and rect.corner_2.y - rect.corner_1.y > 0:
+            print('rect')
+            newcorner1 = rg.Point(abs(rect.corner_1.x + k * delta), abs(rect.corner_1.y - k * delta))
+            newcorner2 = rg.Point(abs(rect.corner_2.x - k * delta), abs(rect.corner_2.y + k * delta))
+            print(newcorner1.x)
+
+            newrect = rg.Rectangle(newcorner1, newcorner2)
+            if k == 0:
+                newrect.fill_color = rect.fill_color
+            newrect.attach_to(win)
+            win.render()
+        else:
+            rect.corner_2.x - rect.corner_1.x < 0 & rect.corner_2.y - rect.corner_1.y
+            newcorner1 = rg.Point(abs(rect.corner_2.x - k * delta), abs(rect.corner_2.y - k * delta))
+            newcorner2 = rg.Point(abs(rect.corner_1.x + k * delta), abs(rect.corner_1.y + k * delta))
+            print(newcorner1.x)
+
+            newrect = rg.Rectangle(newcorner1, newcorner2)
+            if k == 0:
+                newrect.fill_color = rect.fill_color
+            newrect.attach_to(win)
+            win.render()
+
     # ------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #          Tests have been written for you (above).
     # ------------------------------------------------------------------
     # ------------------------------------------------------------------
