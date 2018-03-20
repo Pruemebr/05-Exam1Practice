@@ -109,8 +109,9 @@ def problem2a(circle, rectangle, window):
     cornerpoint1 = rg.Point(rectangle.corner_2.x, rectangle.corner_1.y) #Takes x position of first corner in top left and adds the x length
     cornerpoint2 = rg.Point(rectangle.corner_1.x, rectangle.corner_2.y)
     line = rg.Line(cornerpoint1,cornerpoint2)
-    ######ASK HOW TO PUT ARROW#######
+    line.arrow = 'last'
     line.attach_to(window)
+
     window.render()
     window.continue_on_mouse_click()
 
